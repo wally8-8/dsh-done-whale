@@ -1,0 +1,11 @@
+# dsh-done-whale bundle patch layer.
+#
+# 插入一行宿主插件：Loader 解析到 dsh-done-whale（profile node_modules），
+# 运行宿主半（最小 cordis 插件）；client-modules 同时扫到本包的 dsh.client
+# 元数据，把浏览器半挂进 /plugins/dsh-done-whale/client.js。
+#
+# `dsh plugin --profile web add dsh-done-whale` 安装后，本层随
+# dsh.profile.bundles 自动生效；移除依赖即自动摘除。
+- insert:
+    - id: done-whale
+      name: 'dsh-done-whale'
