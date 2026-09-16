@@ -1,8 +1,12 @@
 {
   "name": "dsh-done-whale",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "DeepSeek Harness tab-whale status light: green when a session finished, amber when something awaits you. 标签页鲸鱼状态灯：会话干完变绿、有事等您处理变琥珀。",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wally8-8/dsh-done-whale.git"
+  },
   "main": "lib/index.mjs",
   "exports": {
     ".": {
@@ -45,28 +49,5 @@
     "favicon",
     "whale"
   ],
-  "peerDependencies": {
-    "@deepseek-ai/cordis": "^4.0.2",
-    "@deepseek-ai/dsh-api-session-controller": "^0.1.6-alpha.1",
-    "@deepseek-ai/dsh-client-locale": "^0.1.6-alpha.1",
-    "@deepseek-ai/dsh-client-ui-session": "^0.1.6-alpha.1",
-    "@deepseek-ai/dsh-client-ui-settings": "^0.1.6-alpha.1",
-    "@deepseek-ai/dsh-settings": "^0.1.6-alpha.1"
-  },
-  "license": "MIT",
-  "devDependencies": {
-    "@deepseek-ai/cordis": "4.0.2",
-    "@deepseek-ai/dsh-api-session-controller": "0.1.6-alpha.1",
-    "@deepseek-ai/dsh-client-locale": "0.1.6-alpha.1",
-    "@deepseek-ai/dsh-client-ui-session": "0.1.6-alpha.1",
-    "@deepseek-ai/dsh-client-ui-settings": "0.1.6-alpha.1",
-    "@deepseek-ai/dsh-settings": "0.1.6-alpha.1",
-    "@types/node": "^26.2.0",
-    "@types/react": "^18.3.0",
-    "react": "^18.3.1",
-    "react-dom": "18.3.1",
-    "react-test-renderer": "18.3.1",
-    "tsdown": "^0.22.14",
-    "typescript": "~5.9.3"
-  }
+  "license": "MIT"
 }

@@ -19,10 +19,23 @@
 ## 安装
 
 ```sh
-dsh plugin --profile web add dsh-done-whale
+dsh plugin --profile web add -w github:wally8-8/dsh-done-whale
 ```
 
 装完重启 Harness（或刷新页面）即生效。
+
+> ⚠️ 本插件**没有发布到 npm**，所以 `dsh plugin --profile web add dsh-done-whale` 会失败（找不到这个包）。请用上面这条 GitHub 安装命令。
+> 用别的 profile 就把 `web` 换成你的 profile 名；改过 `DSH_HOME` 的话同理。
+
+## 更新
+
+装好之后不用再碰终端：
+
+1. 打开 **设置 → 鲸鱼状态灯**：「版本与更新」块会**自动检查**一次（也可以点 **检查更新 / 重新检查** 手动查）；
+2. 有新版时会出现 **有新版本 vX.Y.Z** 和 **立即更新**，点它就完成下载与安装；下载安装期间随时可以点 **取消**；
+3. 装完后 **重启 Harness** 才生效（宿主半是进程内的模块，只刷新页面不够）。
+
+更新过程会显示阶段、百分比、已用时与依赖计数；网络失败可以直接重试。
 
 ## 卸载
 
@@ -37,6 +50,32 @@ dsh plugin --profile web remove dsh-done-whale
 - 只响应**主会话**；子代理会话不会让鲸鱼变色。
 - 绿色和琥珀色同时存在时，显示绿色（干活完成优先）。
 - 刷新页面后鲸鱼回到黑色：这是官方"已完成通知"的内存态语义，属正常现象。
+- 颜色可改：**设置 → 鲸鱼状态灯**里能改完成色 / 待处理色 / 默认色，也能一键恢复默认。
+
+## 给 AI 的更新指引（DSH 破坏性更新后请读这一段）
+
+如果你是读到本文件来帮用户修插件的 AI agent，按下面顺序做，**不要自己猜安装命令**：
+
+1. **先看它现在是怎么装的**：读 `~/.dsh/profiles/web/package.json` 的
+   `dependencies["dsh-done-whale"]`（profile 名不是 `web` 就换成实际名字，
+   改过 `DSH_HOME` 就换成实际 home）。
+2. **一律用 GitHub 通道重装**——本项目**从未发布到 npm**，任何
+   `dsh plugin --profile web add dsh-done-whale` 形式的命令都必然失败：
+
+   ```sh
+   dsh plugin --profile web add -w github:wally8-8/dsh-done-whale
+   ```
+
+3. **让用户重启 Harness**：宿主半是进程内模块，磁盘换了新代码也必须重启才生效，
+   只刷新页面只能更新浏览器半。
+4. **插件能用时优先让它自己更新**：设置 → 鲸鱼状态灯 → 「版本与更新」→
+   检查更新 / 立即更新；也可以调用本插件注册的模型工具 `whale_update`
+   （`action="check"` 先看版本，`action="update"` 真执行）。
+5. **坏到界面都不出来时**：本插件遵循"静默降级"——官方服务改名/消失时它整块不启动，
+   不会拖垮 DSH 界面。此时按第 2 步重装 + 重启即可恢复。
+6. **重装是安全的**：`dsh plugin --profile web remove dsh-done-whale` 卸载零残留，
+   再按第 2 步装回即可。若依赖里写着 `link:`（本地开发安装），重装会把它切换成
+   GitHub 安装，动手前先问用户。
 
 ## License
 
