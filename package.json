@@ -1,6 +1,6 @@
 {
   "name": "dsh-done-whale",
-  "version": "0.3.0",
+  "version": "0.6.0",
   "description": "DeepSeek Harness tab-whale status light: green when a session finished, amber when something awaits you. 标签页鲸鱼状态灯：会话干完变绿、有事等您处理变琥珀。",
   "type": "module",
   "repository": {
